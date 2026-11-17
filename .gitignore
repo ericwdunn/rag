@@ -14,3 +14,7 @@ wheels/
 
 # Local Claude context (personal notes, not for the public repo)
 CLAUDE.md
+
+# Software factory runtime state
+/factory/jobs/
+/.worktrees/
