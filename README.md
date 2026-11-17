@@ -42,6 +42,12 @@ uv run rag.py
 
 Then type questions at the `Ask:` prompt. Ctrl-C to quit.
 
+Offline checks (no Ollama needed):
+
+```sh
+uv run python test_rag.py
+```
+
 ## Known limitations
 
 - Embeddings live in memory and get rebuilt from scratch on every start.
