@@ -6,9 +6,8 @@ chunks = rag.load_chunks()
 assert len(chunks) == 12, f"expected 12 handbook paragraphs, got {len(chunks)}"
 assert any("4827" in c for c in chunks), "planted alarm code missing from handbook"
 
-# Cosine ranking: the chunk pointing the same way as the question wins, regardless of magnitude.
-vecs = np.array([[1.0, 0.0], [0.0, 5.0], [0.7, 0.7]])
-assert rag.rank(np.array([0.0, 1.0]), ["a", "b", "c"], vecs, k=2) == ["b", "c"]
+# Vector literal pgvector parses: '[x,y,...]' with plain floats (numpy scalars included).
+assert rag.to_pgvector(np.array([1, 0.5, -2.25])) == "[1.0,0.5,-2.25]"
 
 prompt = rag.build_prompt("What is the alarm code?", ["ctx one", "ctx two"])
 assert "ctx one\n\nctx two" in prompt and "I don't know" in prompt and prompt.endswith("What is the alarm code?")

@@ -22,14 +22,12 @@ refused = lambda answer: "i don't know" in answer.lower().replace("\u2019", "'")
 
 
 def main():
-    chunks = rag.load_chunks()
-    chunks_vectors = rag.embed(chunks)
     hits = passes = 0
     for question, expected in RETRIEVAL_SET:
-        hits += (hit := any(expected in c for c in rag.retrieve(question, chunks, chunks_vectors, k=3)))
+        hits += (hit := any(expected in c for c in rag.retrieve(question, k=3)))
         print(f"{'hit ' if hit else 'miss'}  {question}")
     for question in REFUSAL_SET:
-        answer = rag.ask_llm(rag.build_prompt(question, rag.retrieve(question, chunks, chunks_vectors, k=3)))
+        answer = rag.ask_llm(rag.build_prompt(question, rag.retrieve(question, k=3)))
         passes += (ok := refused(answer))
         print(f"{'pass' if ok else 'fail'}  {question}")
     print(f"Retrieval hit rate: {hits}/{len(RETRIEVAL_SET)} ({round(100 * hits / len(RETRIEVAL_SET))}%)")
