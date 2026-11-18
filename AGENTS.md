@@ -14,6 +14,8 @@ saying "I don't know" when the context doesn't cover the question. `docs/handboo
 
 - `bash factory/checks.sh`, which runs `uv sync --frozen` and `uv run --frozen python test_rag.py`
   (offline, no Ollama; prints `ok`, exits non-zero on failure).
+- `uv run eval.py` runs the retrieval hit-rate and refusal eval. It needs Ollama and is not part of
+  `factory/checks.sh`.
 - Tests run as a plain script, not via pytest discovery. If pytest is ever added, set
   `testpaths` so it never collects `.worktrees/`.
 
