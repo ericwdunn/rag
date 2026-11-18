@@ -2,8 +2,9 @@
 
 A small local RAG build. `rag.py` loads `docs/*.md`, splits on blank lines, embeds with Ollama
 `nomic-embed-text`, ranks chunks by cosine similarity (top k=3), and answers with `qwen3:4b-instruct`,
-saying "I don't know" when the context doesn't cover the question. `docs/handbook.md` holds planted facts
-(e.g. alarm code 4827) that the tests depend on.
+saying "I don't know" when the context doesn't cover the question. `docs/handbook.md` and
+`docs/menu.md` (a messier price table, lists and notes) hold planted facts (e.g. alarm code 4827, the
+16 oz latte price) that the tests and eval depend on.
 
 ## Setup
 
