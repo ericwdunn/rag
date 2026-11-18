@@ -1,4 +1,4 @@
-Riverbend Coffee Company menu. Everything below is made in house or delivered fresh, and prices are before tax. Ask the barista if you don't see what you want; most drinks can be made hot, iced or blended.
+Riverbend Coffee Company menu. Drinks are made to order, and prices are before tax. Ask the barista if you don't see what you want; most drinks can be made hot, iced or blended.
 
 ## Espresso & Coffee
 
