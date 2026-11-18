@@ -32,8 +32,7 @@ planted in them so retrieval is easy to check, for example:
 
 `docs/menu.md` is the same shop's menu, and it is messier on purpose: a short intro, a markdown
 price table (12 / 16 / 20 oz), bulleted food, milk and syrup lists, stray headings and a few
-notes. The splitter keeps the whole table in one chunk and leaves headings as tiny chunks of
-their own. It plants its own facts, for example:
+notes. The splitter keeps the whole table in one chunk. It plants its own facts, for example:
 
 - "How much is a 16 oz latte?" → $4.95
 - "Does the store sell oat milk?" → yes, +$0.75
