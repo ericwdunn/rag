@@ -17,6 +17,8 @@ RETRIEVAL_SET = [
 
 REFUSAL_SET = ["Who won the World Series?", "What is the Wi-Fi password?",
                "Does the store sell oat milk?", "What is the capital of France?"]
+# Models often reply with a curly apostrophe; normalize it before matching.
+refused = lambda answer: "i don't know" in answer.lower().replace("\u2019", "'")  # noqa: E731
 
 
 def main():
@@ -28,7 +30,7 @@ def main():
         print(f"{'hit ' if hit else 'miss'}  {question}")
     for question in REFUSAL_SET:
         answer = rag.ask_llm(rag.build_prompt(question, rag.retrieve(question, chunks, chunks_vectors, k=3)))
-        passes += (ok := "i don't know" in answer.lower())
+        passes += (ok := refused(answer))
         print(f"{'pass' if ok else 'fail'}  {question}")
     print(f"Retrieval hit rate: {hits}/{len(RETRIEVAL_SET)} ({round(100 * hits / len(RETRIEVAL_SET))}%)")
     print(f"Refusals: {passes}/{len(REFUSAL_SET)}")

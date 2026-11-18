@@ -18,5 +18,6 @@ import eval
 for _, expected in eval.RETRIEVAL_SET:
     assert sum(expected in c for c in chunks) == 1, f"{expected!r} must occur in exactly one chunk"
 assert 10 <= len(eval.RETRIEVAL_SET) <= 15 and 3 <= len(eval.REFUSAL_SET) <= 5, "eval set sizes out of range"
+assert eval.refused("I don't know.") and eval.refused("I don\u2019t know.") and not eval.refused("4827"), "refusal match"
 
 print("ok")
