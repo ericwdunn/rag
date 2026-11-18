@@ -48,15 +48,21 @@ Offline checks (no Ollama needed):
 uv run python test_rag.py
 ```
 
+Eval (needs Ollama): retrieval hit rate in the top 3 and "I don't know" refusals.
+
+```sh
+uv run eval.py
+```
+
 ## Known limitations
 
 - Embeddings live in memory and get rebuilt from scratch on every start.
 - Chunking is naive (one paragraph per chunk), and `k` is fixed at 3.
-- No evaluation yet, so retrieval quality is judged by eye.
+- `eval.py` scores retrieval hit rate and refusals on a small handbook question set.
 
 ## Roadmap
 
 - [ ] Store embeddings in Postgres with pgvector, embed once, and index with HNSW
-- [ ] Eval script: hit rate of the right chunk in the top-k, plus refusal checks on questions the handbook can't answer
+- [x] Eval script: hit rate of the right chunk in the top-k, plus refusal checks on questions the handbook can't answer
 - [ ] Compare chunk sizes and `k` values against the eval
 - [ ] Optional: Claude as the answer model; a second, messier document
