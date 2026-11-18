@@ -1,4 +1,4 @@
-# Retrieval hit rate + "I don't know" refusal eval on docs/handbook.md: `uv run eval.py` (needs Ollama). Exits 0.
+# Retrieval hit rate + "I don't know" refusal eval on every docs/*.md (handbook and menu): `uv run eval.py` (needs Ollama). Exits 0.
 import rag
 
 # (question, string that occurs only in the paragraph that answers it)
@@ -13,10 +13,17 @@ RETRIEVAL_SET = [
     ("What should I wear to work?", "green Riverbend apron"),
     ("How cold does milk need to be kept?", "41 degrees Fahrenheit"),
     ("When is payday?", "every other Friday"),
+    ("How much is a 16 oz latte?", "| Latte | $4.15 | $4.95 |"),
+    ("Does the store sell oat milk?", "Oat milk (+$0.75)"),
+    ("What is the seasonal drink?", "Maple Pecan Latte"),
+    ("Do you have anything gluten-free?", "Flourless chocolate cake (gluten-free)"),
+    ("Is there a sugar-free syrup?", "sugar-free vanilla"),
+    ("Is the food safe for someone with a nut allergy?", "shared kitchen that handles tree nuts"),
+    ("How much does an extra espresso shot cost?", "Extra shot +$0.90"),
 ]
 
 REFUSAL_SET = ["Who won the World Series?", "What is the Wi-Fi password?",
-               "Does the store sell oat milk?", "What is the capital of France?"]
+               "Does the store have a drive-through?", "What is the capital of France?"]
 # Models often reply with a curly apostrophe; normalize it before matching.
 refused = lambda answer: "i don't know" in answer.lower().replace("\u2019", "'")  # noqa: E731
 
